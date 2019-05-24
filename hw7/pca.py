@@ -50,9 +50,9 @@ for x in test_image:
     X -= mean
     
     # Compression
-    weight = np.array([s.dot(u[i]) for i in range(k)])  
+    weight = np.array([X.dot(v[i]) for i in range(k)])  
     # Reconstruction
-    reconstruct = process(np.mean(X.reshape(1080000,1).dot(weight.reshape(1,5)), axis=1) + mean)
+    reconstruct = process(v[0:5].transpose().dot(weight) + mean)
     imsave(output_image, reconstruct.reshape(img_shape))
 
 
